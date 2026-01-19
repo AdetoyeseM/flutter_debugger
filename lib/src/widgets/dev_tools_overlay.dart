@@ -357,9 +357,9 @@ class _DevToolsPanelState extends State<DevToolsPanel>
         children: [
           const Icon(Icons.developer_mode, color: Colors.white, size: 20),
           const SizedBox(width: 8),
-          const Text(
-            'Debugger',
-            style: TextStyle(
+          Text(
+            widget.config.appName ?? 'Debugger',
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 14,
               fontWeight: FontWeight.bold,
