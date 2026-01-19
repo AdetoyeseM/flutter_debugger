@@ -37,6 +37,34 @@ class _DevToolsOverlayState extends State<DevToolsOverlay> {
 
   bool get _isRightEdge => _config.swipeEdge == DevToolsEdge.right;
 
+  @override
+  void initState() {
+    super.initState();
+    // Listen to programmatic panel open/close calls
+    devTools.panelStateNotifier.addListener(_onPanelStateChanged);
+  }
+
+  @override
+  void dispose() {
+    devTools.panelStateNotifier.removeListener(_onPanelStateChanged);
+    super.dispose();
+  }
+
+  void _onPanelStateChanged() {
+    final shouldOpen = devTools.panelStateNotifier.value;
+    if (shouldOpen && !_isOpen) {
+      setState(() {
+        _isOpen = true;
+        _dragOffset = _panelWidth;
+      });
+    } else if (!shouldOpen && _isOpen) {
+      setState(() {
+        _isOpen = false;
+        _dragOffset = 0;
+      });
+    }
+  }
+
   void _openPanel() {
     setState(() {
       _isOpen = true;
@@ -221,6 +249,7 @@ class _DevToolsFab extends StatelessWidget {
                       color: Colors.white,
                       fontSize: 8,
                       fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.none,
                     ),
                   ),
                 ),
@@ -260,7 +289,7 @@ class _DevToolsPanelState extends State<DevToolsPanel>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 6, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
     _loadPrefs();
   }
 
@@ -297,10 +326,11 @@ class _DevToolsPanelState extends State<DevToolsPanel>
                 children: [
                   _buildNetworkTab(),
                   _buildConsoleTab(),
-                  _buildStorageTab(),
-                  _buildPerformanceTab(),
                   _buildAppInfoTab(),
-                  _buildSettingsTab(),
+                  // TODO: Re-enable these tabs later
+                  // _buildStorageTab(),
+                  // _buildPerformanceTab(),
+                  // _buildSettingsTab(),
                 ],
               ),
             ),
@@ -362,17 +392,21 @@ class _DevToolsPanelState extends State<DevToolsPanel>
       color: const Color(0xFF252526),
       child: TabBar(
         controller: _tabController,
+        isScrollable: true,
+        tabAlignment: TabAlignment.start,
         indicatorColor: widget.config.primaryColor,
         labelColor: Colors.white,
         unselectedLabelColor: Colors.white54,
         labelStyle: const TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
+        labelPadding: const EdgeInsets.symmetric(horizontal: 8),
         tabs: [
           _buildTab('Network', devTools.network.count),
-          _buildTab('Console', devTools.console.count),
-          _buildTab('Storage', _prefsEntries.length),
-          const Tab(text: 'Perf'),
+          _buildTab('Log', devTools.console.count),
           const Tab(text: 'Info'),
-          const Tab(text: '⚙️'),
+          // TODO: Re-enable these tabs later
+          // _buildTab('Prefs', _prefsEntries.length),
+          // const Tab(text: 'Perf'),
+          // const Tab(text: '⚙️'),
         ],
       ),
     );
@@ -385,16 +419,19 @@ class _DevToolsPanelState extends State<DevToolsPanel>
         children: [
           Text(label),
           if (count > 0) ...[
-            const SizedBox(width: 4),
+            const SizedBox(width: 3),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+              padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 1),
               decoration: BoxDecoration(
                 color: widget.config.primaryColor.withOpacity(0.3),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(6),
               ),
               child: Text(
                 count > 99 ? '99+' : count.toString(),
-                style: const TextStyle(fontSize: 8),
+                style: const TextStyle(
+                  fontSize: 7,
+                  decoration: TextDecoration.none,
+                ),
               ),
             ),
           ],
@@ -632,6 +669,7 @@ class _DevToolsPanelState extends State<DevToolsPanel>
   // STORAGE TAB (SharedPreferences)
   // ============================================================================
 
+  // ignore: unused_element
   Widget _buildStorageTab() {
     return Column(
       children: [
@@ -694,6 +732,7 @@ class _DevToolsPanelState extends State<DevToolsPanel>
   // PERFORMANCE TAB
   // ============================================================================
 
+  // ignore: unused_element
   Widget _buildPerformanceTab() {
     return ValueListenableBuilder<int>(
       valueListenable: perfMonitor.updateNotifier,
@@ -866,6 +905,7 @@ class _DevToolsPanelState extends State<DevToolsPanel>
   // SETTINGS TAB
   // ============================================================================
 
+  // ignore: unused_element
   Widget _buildSettingsTab() {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(12),
@@ -1056,7 +1096,9 @@ class _NetworkLogItem extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 2),
-                  Row(
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 2,
                     children: [
                       Text(
                         log.statusText,
@@ -1066,22 +1108,18 @@ class _NetworkLogItem extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      if (log.duration != null) ...[
-                        const SizedBox(width: 8),
+                      if (log.duration != null)
                         Text(
                           '${log.duration!.inMilliseconds}ms',
                           style:
                               const TextStyle(color: Colors.white38, fontSize: 9),
                         ),
-                      ],
-                      if (log.responseSize != null) ...[
-                        const SizedBox(width: 8),
+                      if (log.responseSize != null)
                         Text(
                           log.formattedResponseSize,
                           style:
                               const TextStyle(color: Colors.white38, fontSize: 9),
                         ),
-                      ],
                     ],
                   ),
                 ],
@@ -1146,14 +1184,15 @@ class _NetworkLogDetail extends StatelessWidget {
               children: [
                 _DetailSection(title: 'URL', content: log.url, isCode: false),
                 const SizedBox(height: 12),
-                Row(
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
                   children: [
                     _DetailBadge(
                       label: 'Status',
                       value: log.statusText,
                       color: log.isSuccess ? Colors.green : Colors.red,
                     ),
-                    const SizedBox(width: 8),
                     if (log.duration != null)
                       _DetailBadge(
                         label: 'Duration',
@@ -1329,7 +1368,10 @@ class _ConsoleLogItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          Wrap(
+            spacing: 6,
+            runSpacing: 4,
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
@@ -1346,18 +1388,15 @@ class _ConsoleLogItem extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 6),
               Text(
                 log.formattedTime,
                 style: const TextStyle(color: Colors.white38, fontSize: 9),
               ),
-              if (log.tag != null) ...[
-                const SizedBox(width: 6),
+              if (log.tag != null)
                 Text(
                   '[${log.tag}]',
                   style: const TextStyle(color: Colors.white54, fontSize: 9),
                 ),
-              ],
             ],
           ),
           const SizedBox(height: 4),
