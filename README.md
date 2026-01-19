@@ -1,6 +1,6 @@
 # Flutter Dev Tools
 
-A comprehensive in-app developer tools package for Flutter. Inspect network requests, view console logs, check app/device info, and more — all without leaving your app.
+A comprehensive in-app developer tools package for Flutter. Inspect network requests, view console logs, monitor performance, browse SharedPreferences, and more — all without leaving your app.
 
 ![Flutter Dev Tools](https://via.placeholder.com/800x400?text=Flutter+Dev+Tools+Screenshot)
 
@@ -8,7 +8,10 @@ A comprehensive in-app developer tools package for Flutter. Inspect network requ
 
 ✅ **Network Inspector** — View all HTTP requests with headers, body, response, status codes, and timing  
 ✅ **Console Logger** — Capture and filter logs by level (verbose, debug, info, warning, error)  
+✅ **SharedPreferences Viewer** — Browse, search, edit, and delete stored preferences  
+✅ **Performance Monitor** — Track FPS, frame timing, jank detection, and widget rebuilds  
 ✅ **App & Device Info** — View package info, device details, and environment  
+✅ **Dio Support** — Built-in interceptor for Dio HTTP client  
 ✅ **Export Logs** — Share network and console logs for debugging  
 ✅ **Configurable UI** — Customize colors, position, and behavior  
 ✅ **Multiple Access Methods** — FAB button, edge swipe, or programmatic  
