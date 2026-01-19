@@ -1,0 +1,28 @@
+name: flutter_dev_tools
+description: A comprehensive in-app developer tools package for Flutter. Includes network inspector, console logger, app info viewer, and more.
+version: 1.0.0
+homepage: https://github.com/yourusername/flutter_dev_tools
+repository: https://github.com/yourusername/flutter_dev_tools
+issue_tracker: https://github.com/yourusername/flutter_dev_tools/issues
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.10.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  device_info_plus: ^10.1.0
+  http: ^1.2.0
+  package_info_plus: ^8.0.0
+  shared_preferences: ^2.2.0
+  share_plus: ^9.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
