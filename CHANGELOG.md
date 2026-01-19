@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.1] - 2026-01-19
+
+### Fixed
+- Fixed overflow issues in tabs and log items
+- Fixed programmatic `openPanel()` not working
+- Fixed FAB badge underline styling
+
+### Changed
+- Simplified to 3 tabs: Network, Log, Info
+- Panel header now shows app name from config
+- Improved tab layout with scrollable tabs
+
 ## [1.0.0] - 2026-01-19
 
 ### Added
