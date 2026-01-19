@@ -157,9 +157,15 @@ class _DevToolsOverlayState extends State<DevToolsOverlay> {
           child: GestureDetector(
             onHorizontalDragUpdate: _onHorizontalDragUpdate,
             onHorizontalDragEnd: _onHorizontalDragEnd,
-            child: DevToolsPanel(
-              config: _config,
-              onClose: _closePanel,
+            child: Overlay(
+              initialEntries: [
+                OverlayEntry(
+                  builder: (_) => DevToolsPanel(
+                    config: _config,
+                    onClose: _closePanel,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
@@ -352,7 +358,7 @@ class _DevToolsPanelState extends State<DevToolsPanel>
           const Icon(Icons.developer_mode, color: Colors.white, size: 20),
           const SizedBox(width: 8),
           const Text(
-            'Dev Tools',
+            'Debugger',
             style: TextStyle(
               color: Colors.white,
               fontSize: 14,
@@ -397,7 +403,7 @@ class _DevToolsPanelState extends State<DevToolsPanel>
         indicatorColor: widget.config.primaryColor,
         labelColor: Colors.white,
         unselectedLabelColor: Colors.white54,
-        labelStyle: const TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
+        labelStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
         labelPadding: const EdgeInsets.symmetric(horizontal: 8),
         tabs: [
           _buildTab('Network', devTools.network.count),
