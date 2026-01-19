@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_debugger/flutter_debugger.dart';
-
-void main() {
+void main() { 
   // Initialize DevTools with custom configuration
   DevTools.init(
+
     config: const DevToolsConfig(
       appName: 'DevTools Example',
       environment: 'DEV',
       primaryColor: Colors.deepOrange,
       showFab: true,
       enableShakeToOpen: true,
-      fabPosition: DevToolsFabPosition.topLeft,
+      fabPosition: DevToolsFabPosition.bottomRight,
       enableEdgeSwipe: true,
       maxNetworkLogs: 50,
       maxConsoleLogs: 200,

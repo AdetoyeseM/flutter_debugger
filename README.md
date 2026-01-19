@@ -1,21 +1,26 @@
 # Flutter Debugger
 
-A comprehensive in-app developer tools package for Flutter. Inspect network requests, view console logs, monitor performance, browse SharedPreferences, and more — all without leaving your app.
+A comprehensive in-app developer tools package for Flutter. Inspect network requests, view console logs, and more — all without leaving your app.
 
-![Flutter Debugger](https://via.placeholder.com/800x400?text=Flutter+Debugger+Screenshot)
+<p align="center">
+  <img src="screenshots/example_app.png" width="200" alt="Example App"/>
+  <img src="screenshots/network_tab.png" width="200" alt="Network Tab"/>
+  <img src="screenshots/network_detail.png" width="200" alt="Network Detail"/>
+  <img src="screenshots/console_log.png" width="200" alt="Console Log"/>
+</p>
 
 ## Features
 
 ✅ **Network Inspector** — View all HTTP requests with headers, body, response, status codes, and timing  
 ✅ **Console Logger** — Capture and filter logs by level (verbose, debug, info, warning, error)  
-✅ **SharedPreferences Viewer** — Browse, search, edit, and delete stored preferences  
-✅ **Performance Monitor** — Track FPS, frame timing, jank detection, and widget rebuilds  
 ✅ **App & Device Info** — View package info, device details, and environment  
 ✅ **Dio Support** — Built-in interceptor for Dio HTTP client  
 ✅ **Export Logs** — Share network and console logs for debugging  
 ✅ **Configurable UI** — Customize colors, position, and behavior  
 ✅ **Multiple Access Methods** — FAB button, edge swipe, or programmatic  
-✅ **Debug-Only** — Automatically disabled in release builds  
+✅ **Debug-Only** — Automatically disabled in release builds
+
+🔜 **Coming Soon**: SharedPreferences Viewer, Performance Monitor  
 
 ## Installation
 
@@ -168,7 +173,6 @@ DevTools.init(
     // Gestures
     enableEdgeSwipe: true,
     swipeEdge: DevToolsEdge.right,
-    enableShakeToOpen: false,
     
     // Security
     redactedHeaders: ['Authorization', 'Cookie', 'X-Api-Key'],
