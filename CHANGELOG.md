@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.2] - 2026-01-19
+
+### Fixed
+- Fixed README images not showing on pub.dev
+
 ## [1.0.1] - 2026-01-19
 
 ### Fixed

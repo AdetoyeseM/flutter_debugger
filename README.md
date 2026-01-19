@@ -3,10 +3,10 @@
 A comprehensive in-app developer tools package for Flutter. Inspect network requests, view console logs, and more — all without leaving your app.
 
 <p align="center">
-  <img src="screenshots/example_app.png" width="200" alt="Example App"/>
-  <img src="screenshots/network_tab.png" width="200" alt="Network Tab"/>
-  <img src="screenshots/network_detail.png" width="200" alt="Network Detail"/>
-  <img src="screenshots/console_log.png" width="200" alt="Console Log"/>
+  <img src="https://raw.githubusercontent.com/AdetoyeseM/flutter_debugger/main/screenshots/example_app.png" width="200" alt="Example App"/>
+  <img src="https://raw.githubusercontent.com/AdetoyeseM/flutter_debugger/main/screenshots/network_tab.png" width="200" alt="Network Tab"/>
+  <img src="https://raw.githubusercontent.com/AdetoyeseM/flutter_debugger/main/screenshots/network_detail.png" width="200" alt="Network Detail"/>
+  <img src="https://raw.githubusercontent.com/AdetoyeseM/flutter_debugger/main/screenshots/console_log.png" width="200" alt="Console Log"/>
 </p>
 
 ## Features

@@ -1,6 +1,6 @@
 name: flutter_debugger
 description: A comprehensive in-app developer tools package for Flutter. Includes network inspector, console logger, app info viewer, and more.
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/AdetoyeseM/flutter_debugger
 repository: https://github.com/AdetoyeseM/flutter_debugger
 issue_tracker: https://github.com/AdetoyeseM/flutter_debugger/issues
