@@ -1,5 +1,5 @@
-name: flutter_dev_tools_example
-description: Example app demonstrating flutter_dev_tools package
+name: flutter_debugger_example
+description: Example app demonstrating flutter_debugger package
 
 publish_to: 'none'
 
@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_dev_tools:
+  flutter_debugger:
     path: ../
   http: ^1.2.0
 

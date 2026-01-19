@@ -6,7 +6,7 @@
 /// - App & device info
 /// - Shared preferences viewer
 /// - Performance monitoring
-library flutter_dev_tools;
+library flutter_debugger;
 
 // Core
 export 'src/dev_tools.dart';

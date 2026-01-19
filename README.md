@@ -1,8 +1,8 @@
-# Flutter Dev Tools
+# Flutter Debugger
 
 A comprehensive in-app developer tools package for Flutter. Inspect network requests, view console logs, monitor performance, browse SharedPreferences, and more — all without leaving your app.
 
-![Flutter Dev Tools](https://via.placeholder.com/800x400?text=Flutter+Dev+Tools+Screenshot)
+![Flutter Debugger](https://via.placeholder.com/800x400?text=Flutter+Debugger+Screenshot)
 
 ## Features
 
@@ -23,7 +23,7 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_dev_tools: ^1.0.0
+  flutter_debugger: ^1.0.0
 ```
 
 Then run:
@@ -37,7 +37,7 @@ flutter pub get
 ### 1. Wrap your app
 
 ```dart
-import 'package:flutter_dev_tools/flutter_dev_tools.dart';
+import 'package:flutter_debugger/flutter_debugger.dart';
 
 void main() {
   // Optional: Initialize with custom config
@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
 #### Option A: Use the built-in HTTP client
 
 ```dart
-import 'package:flutter_dev_tools/flutter_dev_tools.dart';
+import 'package:flutter_debugger/flutter_debugger.dart';
 
 // Use DevToolsHttp for automatic logging
 final response = await DevToolsHttp.get(Uri.parse('https://api.example.com/users'));

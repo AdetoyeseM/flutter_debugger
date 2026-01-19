@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_dev_tools/flutter_dev_tools.dart';
+import 'package:flutter_debugger/flutter_debugger.dart';
 
 void main() {
   group('NetworkLogger', () {
