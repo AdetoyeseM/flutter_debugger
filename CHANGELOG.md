@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.3] - 2026-01-20
+
+### Changed
+- Updated dependencies to latest versions
+  - device_info_plus: ^12.3.0
+  - package_info_plus: ^9.0.0
+  - share_plus: ^12.0.1
+
 ## [1.0.2] - 2026-01-19
 
 ### Fixed
